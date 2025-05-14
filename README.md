@@ -1,4 +1,4 @@
-# Laboratorio 1.2: Uso de Contenedores con Docker y Docker Compose
+# Laboratorio 1.2: Uso de Contenedores con Docker
 
 Este laboratorio introduce el uso de contenedores con Docker y la orquestación básica con Docker Compose.
 
