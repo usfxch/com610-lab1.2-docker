@@ -154,12 +154,15 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' eje
 docker run -d -p 8080:80 --rm --name ejemplo1_0 -v $(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf nginx:alpine
 ```
 
-### 3.2 Construye una imagen y ejecuta un contenedor a partir de esa imagen
+### 3.2 Construir una imagen con Dockerfile y crear un contenedor a partir de ella
 
 Ingresar a la carpeta del ejemplo 1 y construir la imagen
 
 ```bash
 cd ejemplo1
+```
+
+```bash
 docker build -t ejemplo2_nginx:v1 .
 ```
 
@@ -167,4 +170,19 @@ Ejecutar el contenedor a partir de la imagen creada
 
 ```bash
 docker run -d -p 8080:80 --name ejemplo2_nginx ejemplo2_nginx:v1
+```
+
+### 3.4 Aplicación PHP Simple con Servidor Web Embebido
+
+Construcción de la imagen
+
+```bash
+docker build -t ejemplo4_php:v1 .
+```
+
+Iniciar el contenedor
+
+```bash
+``
+docker run -d -p 8000:8080 --name ejemplo4_php:v1 ejemplo4_php
 ```
