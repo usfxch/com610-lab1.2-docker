@@ -121,3 +121,18 @@ docker run -d -p 8080:80 --name mi_nginx_con_puerto -v $(pwd)/index.html:/usr/sh
 ```
 
 > Ejecuta un contenedor en segundo plano (`-d`) basado en la imagen `nginx:alpine`. Mapea el puerto 80 del contenedor al puerto 8080 del host (`-p 8080:80`). Le asigna el nombre `mi_nginx_con_puerto` (`--name mi_nginx_con_puerto`). Además, monta un volumen (`-v`). En este caso, el archivo `index.html` ubicado en el directorio actual de la máquina host (`$(pwd)/index.html`) se monta en el directorio `/usr/share/nginx/html/index.html` dentro del contenedor (donde Nginx sirve sus archivos web).
+
+## 3. Ejemplos de Dockerfile
+
+Ingresar a la carpeta del ejemplo 1 y construir la imagen
+
+```bash
+cd ejemplo1
+docker build -t ejemplo1_nginx:v1 .
+```
+
+Ejecutar el contenedor a partir de la imagen creada
+
+```bash
+docker run -d -p 8080:80 --name ejemplo1_nginx ejemplo1_nginx:v1`
+```
