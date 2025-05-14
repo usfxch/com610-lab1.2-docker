@@ -124,15 +124,47 @@ docker run -d -p 8080:80 --name mi_nginx_con_puerto -v $(pwd)/index.html:/usr/sh
 
 ## 3. Ejemplos de Dockerfile
 
+### 3.1 Crear un balanceador con contenedores
+
+```bash
+docker run -d -p 8081:80 --rm --name ejemplo1_1 -v $(pwd)/index.1.html:/usr/share/nginx/html/index.html nginx:alpine
+```
+
+```bash
+docker run -d -p 8082:80 --rm --name ejemplo1_2 -v $(pwd)/index.2.html:/usr/share/nginx/html/index.html nginx:alpine
+```
+
+```bash
+docker run -d -p 8083:80 --rm --name ejemplo1_3 -v $(pwd)/index.3.html:/usr/share/nginx/html/index.html nginx:alpine
+```
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ejemplo1_1
+```
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ejemplo1_2
+```
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ejemplo1_3
+```
+
+```bash
+docker run -d -p 8080:80 --rm --name ejemplo1_0 -v $(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf nginx:alpine
+```
+
+### 3.2 Construye una imagen y ejecuta un contenedor a partir de esa imagen
+
 Ingresar a la carpeta del ejemplo 1 y construir la imagen
 
 ```bash
 cd ejemplo1
-docker build -t ejemplo1_nginx:v1 .
+docker build -t ejemplo2_nginx:v1 .
 ```
 
 Ejecutar el contenedor a partir de la imagen creada
 
 ```bash
-docker run -d -p 8080:80 --name ejemplo1_nginx ejemplo1_nginx:v1`
+docker run -d -p 8080:80 --name ejemplo2_nginx ejemplo2_nginx:v1
 ```
