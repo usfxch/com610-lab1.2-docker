@@ -120,7 +120,7 @@ El siguiente ejemplo muestra cómo hacer esto en segundo plano (`-d`), estableci
 docker run -d -p 8080:80 --name mi_nginx_con_puerto nginx:alpine
 ```
 
-> Ejecuta un contenedor en segundo plano (`-d`) basado en la imagen `nginx:alpine`. Mapea el puerto 80 del contenedor al puerto 8080 del host (`-p 8080:80`). Le asigna el nombre `mi_nginx_con_puerto` (`--name mi_nginx_con_puerto`). Además, monta un volumen (`-v`). En este caso, el archivo `index.html` ubicado en el directorio actual de la máquina host (`$(pwd)/index.html`) se monta en el directorio `/usr/share/nginx/html/index.html` dentro del contenedor (donde Nginx sirve sus archivos web).
+> Ejecuta un contenedor en segundo plano (`-d`) basado en la imagen `nginx:alpine`. Mapea el puerto 80 del contenedor al puerto 8080 del host (`-p 8080:80`). Le asigna el nombre `mi_nginx_con_puerto` (`--name mi_nginx_con_puerto`). Además, monta un volumen (`-v`). En este caso, el archivo `index.html` ubicado en el directorio actual de la máquina host (`${PWD}/index.html`) se monta en el directorio `/usr/share/nginx/html/index.html` dentro del contenedor (donde Nginx sirve sus archivos web).
 
 ```bash
 docker run -d -p 8080:80 --name mi_nginx_con_puerto_temporal --rm nginx:alpine
@@ -133,15 +133,15 @@ docker run -d -p 8080:80 --name mi_nginx_con_puerto_temporal --rm nginx:alpine
 ### 3.1 Crear un balanceador con contenedores
 
 ```bash
-docker run -d -p 8081:80 --rm --name ejemplo1_1 -v $(pwd)/index.1.html:/usr/share/nginx/html/index.html nginx:alpine
+docker run -d -p 8081:80 --rm --name ejemplo1_1 -v ${PWD}/index.1.html:/usr/share/nginx/html/index.html nginx:alpine
 ```
 
 ```bash
-docker run -d -p 8082:80 --rm --name ejemplo1_2 -v $(pwd)/index.2.html:/usr/share/nginx/html/index.html nginx:alpine
+docker run -d -p 8082:80 --rm --name ejemplo1_2 -v ${PWD}/index.2.html:/usr/share/nginx/html/index.html nginx:alpine
 ```
 
 ```bash
-docker run -d -p 8083:80 --rm --name ejemplo1_3 -v $(pwd)/index.3.html:/usr/share/nginx/html/index.html nginx:alpine
+docker run -d -p 8083:80 --rm --name ejemplo1_3 -v ${PWD}/index.3.html:/usr/share/nginx/html/index.html nginx:alpine
 ```
 
 ```bash
@@ -157,7 +157,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' eje
 ```
 
 ```bash
-docker run -d -p 8080:80 --rm --name ejemplo1_0 -v $(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf nginx:alpine
+docker run -d -p 8080:80 --rm --name ejemplo1_0 -v ${PWD}/nginx.conf:/etc/nginx/conf.d/default.conf nginx:alpine
 ```
 
 ### 3.2 Construir una imagen con Dockerfile y crear un contenedor a partir de ella
@@ -199,7 +199,7 @@ docker run -d -p 8080:3000 --name ejemplo3_node ejemplo3_node:v1
 Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
 
 ```bash
-docker run -d -p 8080:3000 --name ejemplo3_node -v $(pwd):/app ejemplo3_node:v1
+docker run -d -p 8080:3000 --name ejemplo3_node -v ${PWD}:/app ejemplo3_node:v1
 ```
 
 > En este caso se requiere reiniciar el contenedor con `docker restart <ID_contenedor>`
@@ -221,7 +221,7 @@ docker run -d -p 8080:8080 --name ejemplo4_php ejemplo4_php:v1
 Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
 
 ```bash
-docker run -d -p 8080:8080 --name ejemplo4_php -v $(pwd):/app ejemplo4_php:v1
+docker run -d -p 8080:8080 --name ejemplo4_php -v ${PWD}:/app ejemplo4_php:v1
 ```
 
 > En este caso no se requiere reiniciar el contenedor.
@@ -243,7 +243,7 @@ docker run -d -p 8080:5000 --name ejemplo5_python ejemplo5_python:v1
 Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
 
 ```bash
-docker run -d -p 8080:5000 --name ejemplo5_python -v $(pwd):/app ejemplo5_python:v1
+docker run -d -p 8080:5000 --name ejemplo5_python -v ${PWD}:/app ejemplo5_python:v1
 ```
 
 > En este caso no se requiere reiniciar el contenedor.
@@ -265,5 +265,5 @@ docker run -d -p 8080:3000 --name ejemplo6_node ejemplo6_node:v1
 Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
 
 ```bash
-docker run -d -p 8080:3000 --name ejemplo6_node -v $(pwd):/app ejemplo6_node:v1
+docker run -d -p 8080:3000 --name ejemplo6_node -v ${PWD}:/app ejemplo6_node:v1
 ```
