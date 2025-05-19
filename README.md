@@ -226,7 +226,7 @@ docker run -d -p 8080:8080 --name ejemplo4_php -v $(pwd):/app ejemplo4_php:v1
 
 > En este caso no se requiere reiniciar el contenedor.
 
-### 3.5 Aplicación simple en  Python con Flask
+### 3.5 Aplicación simple en Python con Flask
 
 Construcción de la imagen
 
@@ -247,3 +247,23 @@ docker run -d -p 8080:5000 --name ejemplo5_python -v $(pwd):/app ejemplo5_python
 ```
 
 > En este caso no se requiere reiniciar el contenedor.
+
+### 3.6 Aplicación simple en NodeJS con ExpressJS y nodemon
+
+Construcción de la imagen
+
+```bash
+docker build -t ejemplo6_node:v1 .
+```
+
+Iniciar el contenedor
+
+```bash
+docker run -d -p 8080:3000 --name ejemplo6_node ejemplo6_node:v1
+```
+
+Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
+
+```bash
+docker run -d -p 8080:3000 --name ejemplo6_node -v $(pwd):/app ejemplo6_node:v1
+```
