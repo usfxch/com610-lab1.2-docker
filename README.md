@@ -207,6 +207,5 @@ docker build -t ejemplo4_php:v1 .
 Iniciar el contenedor
 
 ```bash
-``
 docker run -d -p 8000:8080 --name ejemplo4_php:v1 ejemplo4_php
 ```
