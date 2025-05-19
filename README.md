@@ -207,5 +207,19 @@ docker build -t ejemplo4_php:v1 .
 Iniciar el contenedor
 
 ```bash
-docker run -d -p 8000:8080 --name ejemplo4_php:v1 ejemplo4_php
+docker run -d -p 8080:8080 --name ejemplo4_php ejemplo4_php:v1
+```
+
+### 3.5 Aplicación Python Simple con Flask
+
+Construcción de la imagen
+
+```bash
+docker build -t ejemplo5_python:v1 .
+```
+
+Iniciar el contenedor
+
+```bash
+docker run -d -p 8080:8080 --name ejemplo5_python ejemplo5_python:v1
 ```
