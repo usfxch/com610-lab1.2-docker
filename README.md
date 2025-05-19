@@ -178,7 +178,7 @@ Ejecutar el contenedor a partir de la imagen creada
 docker run -d -p 8080:80 --name ejemplo2_nginx ejemplo2_nginx:v1
 ```
 
-### 3.3 Aplicación PHP Simple con Servidor Web Embebido
+### 3.3 Aplicación simple en NodeJS con ExpressJS
 
 Ingresar a la carpeta del ejemplo 3 y construir la imagen
 
@@ -196,7 +196,15 @@ Ejecutar el contenedor a partir de la imagen creada
 docker run -d -p 8080:3000 --name ejemplo3_node ejemplo3_node:v1
 ```
 
-### 3.4 Aplicación PHP Simple con Servidor Web Embebido
+Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
+
+```bash
+docker run -d -p 8080:3000 --name ejemplo3_node -v $(pwd):/app ejemplo3_node:v1
+```
+
+> En este caso se requiere reiniciar el contenedor con `docker restart <ID_contenedor>`
+
+### 3.4 Aplicación simple en PHP con Servidor Web Embebido
 
 Construcción de la imagen
 
@@ -210,7 +218,15 @@ Iniciar el contenedor
 docker run -d -p 8080:8080 --name ejemplo4_php ejemplo4_php:v1
 ```
 
-### 3.5 Aplicación Python Simple con Flask
+Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
+
+```bash
+docker run -d -p 8080:8080 --name ejemplo4_php -v $(pwd):/app ejemplo4_php:v1
+```
+
+> En este caso no se requiere reiniciar el contenedor.
+
+### 3.5 Aplicación simple en  Python con Flask
 
 Construcción de la imagen
 
@@ -223,3 +239,11 @@ Iniciar el contenedor
 ```bash
 docker run -d -p 8080:5000 --name ejemplo5_python ejemplo5_python:v1
 ```
+
+Ejecutar el contenedor a partir de la imagen creada y establecer un volumen para montar el directorio local dentro del contenedor.
+
+```bash
+docker run -d -p 8080:5000 --name ejemplo5_python -v $(pwd):/app ejemplo5_python:v1
+```
+
+> En este caso no se requiere reiniciar el contenedor.
